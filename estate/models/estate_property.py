@@ -29,3 +29,5 @@ class EstateProperty(models.Model):
                             ('E', 'Est'),
                             ('O', 'Ouest')
         ], string="Orientation du jardin")
+
+    active = fields.Boolean("Actif", default=True)
