@@ -1,16 +1,23 @@
+#---External---
+from dateutil.relativedelta import relativedelta
+#---Odoo---
 from odoo import models, fields
 
 class EstateProperty(models.Model):
+#---Methods---
+    def _set_date_availability_default(self):
+        return fields.Date.context_today(self) + relativedelta(months=3)
+#---Data---
     _name = "estate_property"
     _description = "Propriété de l'immobilier"
 
     name = fields.Char("Nom", required=True)
     description = fields.Text("Description")
     postcode = fields.Char("Code postal")
-    date_availability = fields.Date("Date valables", copy=False)
+    date_availability = fields.Date("Date valables", copy=False, default=_set_date_availability_default)
     expected_price = fields.Float("Prix attendu", required=True)
     selling_price = fields.Float("Prix de vente", readonly=True, copy=False)
-    bedrooms = fields.Integer("Chambres")
+    bedrooms = fields.Integer("Chambres", default=2)
     living_area = fields.Integer("Salon")
     facades = fields.Integer("Façades")
     garage = fields.Boolean("Garage")
