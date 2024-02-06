@@ -14,8 +14,6 @@
                         <field name="expected_price"/>
                         <field name="selling_price"/>
                         <field name="bedrooms"/>
-                    </group>
-                    <group>
                         <field name="living_area"/>
                         <field name="facades"/>
                         <field name="garage"/>
