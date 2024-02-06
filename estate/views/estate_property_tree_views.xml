@@ -9,9 +9,9 @@
                 <field name="postcode"/>
                 <field name="bedrooms"/>
                 <field name="living_area"/>
-                <field name="date_availability"/>
                 <field name="expected_price"/>
                 <field name="selling_price"/>
+                <field name="date_availability"/>
             </tree>
         </field>
     </record>
