@@ -14,12 +14,15 @@
                         <field name="expected_price"/>
                         <field name="selling_price"/>
                         <field name="bedrooms"/>
+                    </group>
+                    <group>
                         <field name="living_area"/>
                         <field name="facades"/>
                         <field name="garage"/>
                         <field name="garden"/>
                         <field name="garden_area"/>
                         <field name="garden_orientation"/>
+                        <field name="state"/>
                     </group>
                 </sheet>
             </form>
