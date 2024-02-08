@@ -4,7 +4,7 @@
         <field name="name">estate.property.type.form</field>
         <field name="model">estate.property.type</field>
         <field name="arch" type="xml">
-            <form string="Estate Property Type">
+            <form string="Type de propriété immobilière">
                 <sheet>
                     <header>
                         <h1>
