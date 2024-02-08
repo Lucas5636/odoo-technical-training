@@ -1,7 +1,7 @@
 #---External---
 from dateutil.relativedelta import relativedelta
 #---Odoo---
-from odoo import models, fields
+from odoo import models, fields, api
 
 class EstateProperty(models.Model):
     #---Methods---
@@ -45,3 +45,5 @@ class EstateProperty(models.Model):
     active = fields.Boolean("Actif", default=True)
     #---Relations---
     property_type_id = fields.Many2one("estate.property.type", string="Type de propriété")
+    salesperson_id = fields.Many2one('res.users', string='Vendeurs', index=True, default=lambda self: self.env.user)
+    buyer_id = fields.Many2one('res.partner', string='Acheteurs', index=True, copy=False)

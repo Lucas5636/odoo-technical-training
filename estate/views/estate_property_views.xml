@@ -35,6 +35,12 @@
                                 <field name="state"/>
                             </group>
                         </page>
+                        <page string="Autres informations">
+                            <group>
+                                <field name="salesperson_id"/>
+                                <field name="buyer_id"/>
+                            </group>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
