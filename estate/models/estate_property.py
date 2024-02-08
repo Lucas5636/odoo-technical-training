@@ -31,11 +31,11 @@ class EstateProperty(models.Model):
         ], string="Orientation du jardin")
     state = fields.Selection(
         selection=[
-            ("new", "New"),
-            ("offer_received", "Offer Received"),
-            ("offer_accepted", "Offer Accepted"),
-            ("sold", "Sold"),
-            ("canceled", "Canceled"),
+            ("new", "Nouveau"),
+            ("offer_received", "Offre Reçue"),
+            ("offer_accepted", "Offre Acceptée"),
+            ("sold", "Vendu"),
+            ("canceled", "Annuler"),
         ],
         string="Status",
         required=True,
@@ -47,3 +47,4 @@ class EstateProperty(models.Model):
     property_type_id = fields.Many2one("estate.property.type", string="Type de propriété")
     salesperson_id = fields.Many2one('res.users', string='Vendeurs', index=True, default=lambda self: self.env.user)
     buyer_id = fields.Many2one('res.partner', string='Acheteurs', index=True, copy=False)
+    tag_ids = fields.Many2many("estate.property.tag", string="Tags")

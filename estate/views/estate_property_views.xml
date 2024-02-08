@@ -10,6 +10,9 @@
                         <h1>
                             <field name="name"/>
                         </h1>
+                        <h2>
+                            <field name="tag_ids" widget="many2many_tags"/>
+                        </h2>
                     </header>
                     <group>
                         <group>
@@ -61,6 +64,7 @@
                 <field name="garden"/>
                 <field name="postcode"/>
                 <field name="facades"/>
+                <field name="tag_ids" widget="many2many_tags"/>
             </tree>
         </field>
     </record>
@@ -75,6 +79,7 @@
                 <field name="bedrooms"/>
                 <field name="living_area"/>
                 <field name="facades"/>
+                <field name="tag_ids" widget="many2many_tags"/>
                 <filter string="Disponible" name="available" domain="[('state', '=', ('new', 'offer_received'))]"/>
                 <group string="Group By">
                         <filter string="Code postal" name="postcode" context="{'group_by':'postcode'}"/>
@@ -83,7 +88,7 @@
         </field>
     </record>
     <record id="estate_property_action" model="ir.actions.act_window">
-        <field name="name">Properties</field>
+        <field name="name">Propriétés</field>
         <field name="res_model">estate.property</field>
         <field name="view_mode">tree,kanban,form</field>
     </record>
