@@ -11,7 +11,7 @@
                             <field name="name"/>
                         </h1>
                         <h2>
-                            <field name="tag_ids" widget="many2many_tags"/>
+                            <field name="tag_ids" widget="many2many_tags" placeholder="Entrer un tag" class="o_field_highlight"/>
                         </h2>
                     </header>
                     <group>
