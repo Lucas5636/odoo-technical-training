@@ -11,21 +11,6 @@
                             <field name="name"/>
                         </h1>
                     </header>
-                    <group>
-                        <group>
-                            <field name="name" class="oe_inline"/>
-                        </group>
-                        <group>
-                            <field name="name" class="oe_inline"/>
-                        </group>
-                    </group>
-                    <notebook>
-                        <page string="Description">
-                            <group>
-                                <field name="name"/>
-                            </group>
-                        </page>
-                    </notebook>
                 </sheet>
             </form>
         </field>

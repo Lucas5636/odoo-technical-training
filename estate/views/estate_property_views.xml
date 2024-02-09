@@ -16,11 +16,13 @@
                     </header>
                     <group>
                         <group>
+                            <field name="property_type_id" class="oe_inline" />
                             <field name="postcode" class="oe_inline"/>
                             <field name="date_availability" class="oe_inline"/>
                         </group>
                         <group>
                             <field name="expected_price" class="oe_inline"/>
+                            <field name="best_price" class="oe_inline"/>
                             <field name="selling_price" class="oe_inline"/>
                         </group>
                     </group>
@@ -35,6 +37,7 @@
                                 <field name="garden"/>
                                 <field name="garden_area"/>
                                 <field name="garden_orientation"/>
+                                <field name="total_area"/>
                                 <field name="state"/>
                             </group>
                         </page>
