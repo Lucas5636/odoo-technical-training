@@ -7,6 +7,7 @@
             <form string="Estate Property">
                 <button name="action_sold" type="object" string="Vendu"/>
                 <button name="action_cancel" type="object" string="Annuler"/>
+                <field name="state" widget="statusbar" statusbar_visible="new,offer_received,offer_accepted,sold" class="oe_right"/>
                 <sheet>
                     <header>
                         <h1>
