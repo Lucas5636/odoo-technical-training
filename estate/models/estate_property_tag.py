@@ -8,8 +8,8 @@ class EstatePropertyTag(models.Model):
     _description = "Tag de propriété de l'immobilier"
     # ---SQL Constraints---
     _sql_constraints = [
-        ("check_price", "CHECK(price > 0)",
-         "Le prix de l'offre devrait être supérieur à 0"),
+        ("check_name", "UNIQUE(name)",
+         "Le tag existe déjà"),
     ]
     # ---Methods---
     #---Data---

@@ -8,7 +8,7 @@ class EstatePropertyType(models.Model):
     _description = "Type de propriété de l'immobilier"
     # ---SQL Constraints---
     _sql_constraints = [
-        ("check_name", "CHECK(name )",
+        ("check_name", "UNIQUE(name)",
          "Le type de propriété existe déjà"),
     ]
     # ---Methods---
