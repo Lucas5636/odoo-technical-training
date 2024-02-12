@@ -2,7 +2,8 @@
 from dateutil.relativedelta import relativedelta
 #---Odoo---
 from odoo import models, fields, api
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
+from odoo.tools import float_compare, float_is_zero
 
 class EstateProperty(models.Model):
     #---Private attributes---
@@ -70,6 +71,12 @@ class EstateProperty(models.Model):
             prices.best_price = max(prices.offer_ids.mapped("price")) if prices.offer_ids else 0.0
 
     #---Constraints and onchanges---
+    @api.constrains("selling_price")
+    def _check_selling_price(self):
+        for property in self:
+            if (not float_is_zero(property.selling_price, precision_rounding=0.01) and
+                    float_compare(property.selling_price, property.expected_price * 0.9, precision_rounding=0.01) < 0):
+                raise ValidationError("Le prix de vente ne peut pas être plus petit que 90% du prix shouaité")
     @api.onchange("garden")
     def _onchange_partner_id(self):
         if self.garden:
