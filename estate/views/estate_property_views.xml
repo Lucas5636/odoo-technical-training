@@ -67,7 +67,7 @@
         <field name="arch" type="xml">
             <tree string="Estate Properties">
                 <field name="name"/>
-                <field name="date_availability"/>
+                <field name="date_availability" optional="hide"/>
                 <field name="expected_price"/>
                 <field name="state"/>
                 <field name="bedrooms"/>
