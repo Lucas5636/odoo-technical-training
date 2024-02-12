@@ -41,15 +41,10 @@ class EstatePropertyOffer(models.Model):
             dates.validity = (dates.date_deadline - date).days
     #---Action methods---
     def action_accept(self):
-        if "refused" in self.mapped("property_id.offer_ids.status"):
-            raise UserError("Vous ne pouvez pas accepté une offre déjà refusée")
         if "accepted" in self.mapped("property_id.offer_ids.status"):
-            raise UserError("L'offre a déjà été acceptée")
+            raise UserError("Une offre a déjà été acceptée")
+        self.write({"status": "accepted"})
         return self.mapped("property_id").write({"state": "offer_accepted", "selling_price": self.price,
-                "buyer_id": self.partner_id.id,}) + self.write({"status": "accepted"})
+                "buyer_id": self.partner_id.id,})
     def action_refuse(self):
-        if "accepted" in self.mapped("property_id.offer_ids.status"):
-            raise UserError("Vous ne pouvez pas refusé une offre déjà acceptée")
-        if "refused" in self.mapped("property_id.offer_ids.status"):
-            raise UserError("L'offre a déjà été refusée")
         return self.write({"status": "refused"})
