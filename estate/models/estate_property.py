@@ -9,6 +9,7 @@ class EstateProperty(models.Model):
     #---Private attributes---
     _name = "estate.property"
     _description = "Propriété de l'immobilier"
+    _order = "id desc"
     #---SQL Constraints---
     _sql_constraints = [
         ("check_expected_price", "CHECK(expected_price > 0)",

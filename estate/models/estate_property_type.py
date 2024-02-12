@@ -6,6 +6,7 @@ class EstatePropertyType(models.Model):
     #---Private ---
     _name = "estate.property.type"
     _description = "Type de propriété de l'immobilier"
+    _order = "name"
     # ---SQL Constraints---
     _sql_constraints = [
         ("check_name", "UNIQUE(name)",

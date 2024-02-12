@@ -6,6 +6,7 @@ class EstatePropertyTag(models.Model):
     #---Private ---
     _name = "estate.property.tag"
     _description = "Tag de propriété de l'immobilier"
+    _order = "name"
     # ---SQL Constraints---
     _sql_constraints = [
         ("check_name", "UNIQUE(name)",
