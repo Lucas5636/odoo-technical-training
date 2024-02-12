@@ -21,7 +21,8 @@
         <field name="name">estate.property.offer.tree</field>
         <field name="model">estate.property.offer</field>
         <field name="arch" type="xml">
-            <tree string="Offre de propriété immobilière" editable="bottom">
+            <tree string="Offre de propriété immobilière" editable="bottom"
+                  decoration-success="status == 'accepted'" decoration-danger="status == 'refused'">
                 <field name="price"/>
                 <field name="partner_id"/>
                 <field name="validity"/>
@@ -30,7 +31,7 @@
                         attrs="{'invisible':[('status','!=', False)]}"/>
                 <button name="action_refuse" string="Refuser" type="object" icon="fa-check"
                         attrs="{'invisible':[('status','!=', False)]}"/>
-                <field name="status"/>
+                <field name="status" invisible="1"/>
             </tree>
         </field>
     </record>

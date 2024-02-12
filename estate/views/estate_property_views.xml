@@ -47,7 +47,8 @@
                         </page>
                         <page string="Offres">
                             <group>
-                                <field name="offer_ids" attrs="{'readonly': [('state', 'in', ('offer_accepted', 'sold', 'canceled'))]}"/>
+                                <field name="offer_ids"
+                                       attrs="{'readonly': [('state', 'in', ('offer_accepted', 'sold', 'canceled'))]}"/>
                             </group>
                         </page>
                         <page string="Autres informations">
@@ -65,7 +66,8 @@
         <field name="name">estate.property.tree</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <tree string="Estate Properties">
+            <tree string="Estate Properties" decoration-success="state in ('offer_received', 'offer_accepted')"
+                  decoration-muted="state == 'sold'" decoration-bf="state == 'offer_accepted'">
                 <field name="name"/>
                 <field name="date_availability" optional="hide"/>
                 <field name="expected_price"/>
