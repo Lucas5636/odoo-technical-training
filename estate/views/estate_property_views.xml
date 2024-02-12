@@ -5,6 +5,8 @@
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
             <form string="Estate Property">
+                <button name="action_sold" type="object" string="Vendu"/>
+                <button name="action_cancel" type="object" string="Annuler"/>
                 <sheet>
                     <header>
                         <h1>

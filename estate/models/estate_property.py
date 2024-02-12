@@ -2,20 +2,28 @@
 from dateutil.relativedelta import relativedelta
 #---Odoo---
 from odoo import models, fields, api
+from odoo.exceptions import UserError
 
 class EstateProperty(models.Model):
-    #---Methods---
-    def _set_date_availability_default(self):
-        return fields.Date.context_today(self) + relativedelta(months=3)
-    #---Data---
+    #---Private attributes---
     _name = "estate.property"
     _description = "Propriété de l'immobilier"
-
+    #---SQL Constraints---
+    _sql_constraints = [
+        ("check_expected_price", "CHECK(expected_price > 0)",
+         "Le prix de vente devrait être supérieur à 0"),
+        ("check_selling_price", "CHECK(selling_price >= 0)",
+         "Le prix shouaité devrait être supérieur ou égal à 0"),
+    ]
+    # ---Methods---
+    def _set_date_availability_default(self):
+        return fields.Date.context_today(self) + relativedelta(months=3)
+    # ---Data---
     name = fields.Char("Nom", required=True)
     description = fields.Text("Description")
     postcode = fields.Char("Code postal")
     date_availability = fields.Date("Date valables", copy=False, default=_set_date_availability_default)
-    expected_price = fields.Float("Prix attendu", required=True)
+    expected_price = fields.Float("Prix shouaité", required=True)
     selling_price = fields.Float("Prix de vente", readonly=True, copy=False)
     bedrooms = fields.Integer("Chambres", default=2)
     living_area = fields.Integer("Aire du salon")
@@ -60,3 +68,22 @@ class EstateProperty(models.Model):
     def _compute_best_price(self):
         for prices in self:
             prices.best_price = max(prices.offer_ids.mapped("price")) if prices.offer_ids else 0.0
+
+    #---Constraints and onchanges---
+    @api.onchange("garden")
+    def _onchange_partner_id(self):
+        if self.garden:
+            self.garden_area = 10
+            self.garden_orientation = "N"
+        else:
+            self.garden_area = 0
+            self.garden_orientation = False
+    #---Action methods---
+    def action_sold(self):
+        if "canceled" in self.mapped("state"):
+            raise UserError("Les offres annulées ne peuvent pas être vendue")
+        return self.write({"state": "sold"})
+    def action_cancel(self):
+        if "sold" in self.mapped("state"):
+            raise UserError("Les offres vendues ne peuvent pas être annulée")
+        return self.write({"state": "canceled"})
