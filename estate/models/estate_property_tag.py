@@ -14,4 +14,5 @@ class EstatePropertyTag(models.Model):
     ]
     # ---Methods---
     #---Data---
-    name = fields.Char("nom", required=True)
+    name = fields.Char("Nom", required=True)
+    color = fields.Integer("Couleur")
