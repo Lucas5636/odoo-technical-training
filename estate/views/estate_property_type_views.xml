@@ -6,6 +6,8 @@
         <field name="arch" type="xml">
             <form string="Type de propriété immobilière">
                 <sheet>
+                    <button name="%(estate.action_view_offers)d" type="action" string="View Offers"
+                            class="oe_right"/>
                     <header>
                         <h1>
                             <field name="name"/>
