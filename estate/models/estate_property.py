@@ -86,6 +86,12 @@ class EstateProperty(models.Model):
         else:
             self.garden_area = 0
             self.garden_orientation = False
+    #---CRUD methods---
+    @api.ondelete(at_uninstall=False)
+    def _unlik_except_active(self):
+        if not set(self.mapped("state")) <= {"new", "canceled"}:
+            raise UserError("Vous pouvez supprimer uniquement les propriétés nouvelles et annulées !")
+
     #---Action methods---
     def action_sold(self):
         if "canceled" in self.mapped("state"):
@@ -95,3 +101,4 @@ class EstateProperty(models.Model):
         if "sold" in self.mapped("state"):
             raise UserError("Les offres vendues ne peuvent pas être annulée")
         return self.write({"state": "canceled"})
+
