@@ -47,13 +47,13 @@
                         </page>
                         <page string="Offres">
                             <group>
-                                <field name="offer_ids"
-                                       attrs="{'readonly': [('state', 'in', ('offer_accepted', 'sold', 'canceled'))]}"/>
+                                <!--<field name="offer_ids"
+                                       attrs="{'readonly': [('state', 'in', ('offer_accepted', 'sold', 'canceled'))]}"/>-->
                             </group>
                         </page>
                         <page string="Autres informations">
                             <group>
-                                <field name="salesperson_id"/>
+                                <field name="user_id"/>
                                 <field name="buyer_id"/>
                             </group>
                         </page>
