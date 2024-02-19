@@ -7,4 +7,4 @@ class EstateProperty(models.Model):
 
     def action_sold(self):
         print("Hello from action sold")
-        return super().inherited_action_sold()
+        return super().action_sold()

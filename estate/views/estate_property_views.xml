@@ -94,7 +94,7 @@
                 <field name="living_area" filter_domain="[('living_area', '>=', self)]"/>
                 <field name="facades"/>
                 <field name="tag_ids" widget="many2many_tags"/>
-                <filter string="Disponible" name="available" domain="[('state', '=', ('new', 'offer_received'))]"/>
+                <filter string="Disponible" name="available" domain="[('state', 'in', ('new', 'offer_received'))]"/>
                 <group string="Group By">
                         <filter string="Code postal" name="postcode" context="{'group_by':'postcode'}"/>
                 </group>

@@ -4,4 +4,4 @@ class ResUsers(models.Model):
     _inherit = "res.users"
 
     property_ids = fields.One2many("estate.property", "user_id", string="Propirétés", index=True,
-                                   domain=[("state", "=", ["new", "offer_received"])])
+                                   domain=[("state", "in", ["new", "offer_received"])])
