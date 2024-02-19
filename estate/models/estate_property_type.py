@@ -16,10 +16,10 @@ class EstatePropertyType(models.Model):
     #---Data---
     name = fields.Char("Nom", required=True)
     sequence = fields.Integer("Séquence")
-    offer_count = fields.Integer(string='Offer Count', compute='_compute_offer_count')
+    offer_count = fields.Integer(string="Offres comptées", compute="_compute_offer_count")
     #---Relations---
     property_ids = fields.One2many("estate.property", "property_type_id", string="Propriétés")
-    offer_ids = fields.One2many('estate.property.offer', 'property_type_id', string='Offers')
+    offer_ids = fields.One2many("estate.property.offer", "property_type_id", string="Offers")
     @api.depends('offer_ids')
     def _compute_offer_count(self):
         for record in self:

@@ -3,4 +3,5 @@ from odoo import models, fields
 class Users(models.Model):
     _inherit = 'res.users'
 
-    #--- Voir si déjà nécessaire car res.partner fonctionne sans fichier ---
+    property_ids = fields.One2many("estate.property", "salesperson_id", string="Propirétés", index=True,
+                                   domain="[('state', '=', ('new', 'offer_received')]")

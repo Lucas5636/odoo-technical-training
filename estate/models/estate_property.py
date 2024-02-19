@@ -6,16 +6,16 @@ from odoo.exceptions import UserError, ValidationError
 from odoo.tools import float_compare, float_is_zero
 
 class EstateProperty(models.Model):
-    #---Private attributes---
+    # ---Private attributes---
     _name = "estate.property"
     _description = "Propriété de l'immobilier"
     _order = "id desc"
-    #---SQL Constraints---
+    # ---SQL Constraints---
     _sql_constraints = [
         ("check_expected_price", "CHECK(expected_price > 0)",
          "Le prix de vente devrait être supérieur à 0"),
         ("check_selling_price", "CHECK(selling_price >= 0)",
-         "Le prix shouaité devrait être supérieur ou égal à 0"),
+         "Le prix souhaité devrait être supérieur ou égal à 0"),
     ]
     # ---Methods---
     def _set_date_availability_default(self):
@@ -55,13 +55,13 @@ class EstateProperty(models.Model):
     total_area = fields.Integer(string="Aire total", compute="_compute_total_area")
     best_price = fields.Float(string="Meilleur prix", compute="_compute_best_price")
     active = fields.Boolean("Actif", default=True)
-    #---Relations---
+    # ---Relations---
     property_type_id = fields.Many2one("estate.property.type", string="Type de propriété")
     salesperson_id = fields.Many2one("res.users", string="Vendeurs", index=True, default=lambda self: self.env.user)
     buyer_id = fields.Many2one("res.partner", string="Acheteurs", index=True, copy=False)
     tag_ids = fields.Many2many("estate.property.tag", string="Tags")
     offer_ids = fields.One2many("estate.property.offer", "property_id", string="Offres")
-    #---compute and search---
+    # ---compute and search---
     @api.depends("living_area", "garden_area")
     def _compute_total_area(self):
         for areas in self:
@@ -71,8 +71,8 @@ class EstateProperty(models.Model):
         for prices in self:
             prices.best_price = max(prices.offer_ids.mapped("price")) if prices.offer_ids else 0.0
 
-    #---Constraints and onchanges---
-    @api.constrains("selling_price")
+    # ---Constraints and onchanges---
+    @api.constrains("expected_price", "selling_price")
     def _check_selling_price(self):
         for property in self:
             if (not float_is_zero(property.selling_price, precision_rounding=0.01) and
@@ -86,13 +86,13 @@ class EstateProperty(models.Model):
         else:
             self.garden_area = 0
             self.garden_orientation = False
-    #---CRUD methods---
+    # ---CRUD methods---
     @api.ondelete(at_uninstall=False)
-    def _unlik_except_active(self):
+    def _unlink_except_active(self):
         if not set(self.mapped("state")) <= {"new", "canceled"}:
             raise UserError("Vous pouvez supprimer uniquement les propriétés nouvelles et annulées !")
 
-    #---Action methods---
+    # ---Action methods---
     def action_sold(self):
         if "canceled" in self.mapped("state"):
             raise UserError("Les offres annulées ne peuvent pas être vendue")
