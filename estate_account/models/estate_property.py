@@ -6,5 +6,4 @@ class EstateProperty(models.Model):
     _inherit = "estate.property"
 
     def action_sold(self):
-        print("Hello from action sold")
         return super().action_sold()
