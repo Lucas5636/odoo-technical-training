@@ -32,8 +32,8 @@
         <field name="name">estate.property.type.tree</field>
         <field name="model">estate.property.type</field>
         <field name="arch" type="xml">
-            <tree string="Property Types" editable="bottom">
-                <!--field name="sequence" widget="handle"/-->
+            <tree string="Property Types">
+                <field name="sequence" widget="handle"/>
                 <field name="name"/>
             </tree>
         </field>
