@@ -109,7 +109,21 @@
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click">
-                            <field name="name"/>
+                            <div class="o_kanban_record_title">
+                                <field name="name"/>
+                            </div>
+                            <div>
+                                Prix souhaité : <field name="expected_price"/>
+                            </div>
+                            <div>
+                                Meilleur prix : <field name="best_price"/>
+                            </div>
+                            <div>
+                                Prix de vente : <field name="selling_price"/>
+                            </div>
+                            <div>
+                                Tag(s) : <field name="tag_ids" />
+                            </div>
                         </div>
                     </t>
                 </templates>
