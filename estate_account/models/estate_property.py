@@ -16,12 +16,16 @@ class EstateProperty(models.Model):
                 "move_type": "out_invoice",
                 "journal_id": journal.id,
                 "invoice_line_ids": [
-                    (0, 0, {
+                    Command.create({
                             "name": property.name,
                             "quantity": 1.0,
                             "price_unit": property.selling_price * 0.6,
-                        }
-                    )
+                    }),
+                    Command.create({
+                            "name": "Administrative fees",
+                            "quantity": 1.0,
+                            "price_unit": 100.0,
+                    }),
                 ],
             })
         return super().action_sold()
