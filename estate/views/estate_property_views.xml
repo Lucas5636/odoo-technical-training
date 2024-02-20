@@ -115,11 +115,11 @@
                             <div>
                                 Prix souhaité : <field name="expected_price"/>
                             </div>
-                            <div>
-                                Meilleur prix : <field name="best_price"/>
+                            <div t-if="record.selling_price.raw_value">
+                                Prix de vente : <field name="selling_price"/>
                             </div>
                             <div>
-                                Prix de vente : <field name="selling_price"/>
+                                Meilleur prix : <field name="best_price"/>
                             </div>
                             <div>
                                 <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
