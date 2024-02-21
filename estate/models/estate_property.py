@@ -1,10 +1,9 @@
-#---External---
+# ---External---
 from dateutil.relativedelta import relativedelta
-#---Odoo---
+# ---Odoo---
 from odoo import api, models, fields
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools import float_compare, float_is_zero
-
 class EstateProperty(models.Model):
     # ---Private attributes---
     _name = "estate.property"
@@ -70,7 +69,6 @@ class EstateProperty(models.Model):
     def _compute_best_price(self):
         for prices in self:
             prices.best_price = max(prices.offer_ids.mapped("price")) if prices.offer_ids else 0.0
-
     # ---Constraints and onchanges---
     @api.constrains("expected_price", "selling_price")
     def _check_selling_price(self):
@@ -91,7 +89,6 @@ class EstateProperty(models.Model):
     def _unlink_except_active(self):
         if not set(self.mapped("state")) <= {"new", "canceled"}:
             raise UserError("Vous pouvez supprimer uniquement les propriétés nouvelles et annulées !")
-
     # ---Action methods---
     def action_sold(self):
         if "canceled" in self.mapped("state"):
@@ -101,4 +98,3 @@ class EstateProperty(models.Model):
         if "sold" in self.mapped("state"):
             raise UserError("Les offres vendues ne peuvent pas être annulée")
         return self.write({"state": "canceled"})
-
