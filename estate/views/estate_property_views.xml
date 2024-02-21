@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_estate_property_form" model="ir.ui.view">
+    <record id="estate_property_view_form" model="ir.ui.view">
         <field name="name">estate.property.form</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <form string="Estate Property">
+            <form string="Propriétés immobilières">
                 <button name="action_sold" type="object" string="Vendu"/>
                 <button name="action_cancel" type="object" string="Annuler"/>
                 <field name="state" widget="statusbar" statusbar_visible="new,offer_received,offer_accepted,sold" class="oe_right"/>
@@ -66,7 +66,7 @@
         <field name="name">estate.property.tree</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <tree string="Estate Properties" decoration-success="state in ('offer_received', 'offer_accepted')"
+            <tree string="Propriétés immobilières" decoration-success="state in ('offer_received', 'offer_accepted')"
                   decoration-muted="state == 'sold'" decoration-bf="state == 'offer_accepted'">
                 <field name="name"/>
                 <field name="date_availability" optional="hide"/>

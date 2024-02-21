@@ -10,7 +10,7 @@
         </field>
     </record>
     <record id="estate_property_tag_action" model="ir.actions.act_window">
-        <field name="name">Tag de propriétés</field>
+        <field name="name">Tag de propriétés immobilières</field>
         <field name="res_model">estate.property.tag</field>
         <field name="view_mode">tree,kanban,form</field>
     </record>

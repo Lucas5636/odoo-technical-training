@@ -4,7 +4,7 @@
         <field name="name">estate.property.offer.form</field>
         <field name="model">estate.property.offer</field>
         <field name="arch" type="xml">
-            <form string="Offre de propriété immobilière">
+            <form string="Offres de propriétés immobilières">
                 <field name="price"/>
                 <field name="partner_id"/>
                 <field name="validity"/>
@@ -21,7 +21,7 @@
         <field name="name">estate.property.offer.tree</field>
         <field name="model">estate.property.offer</field>
         <field name="arch" type="xml">
-            <tree string="Offre de propriété immobilière" editable="bottom"
+            <tree string="Offres de propriétés immobilières" editable="bottom"
                   decoration-success="status == 'accepted'" decoration-danger="status == 'refused'">
                 <field name="price"/>
                 <field name="partner_id"/>
