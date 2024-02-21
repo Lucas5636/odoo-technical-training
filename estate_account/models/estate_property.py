@@ -6,7 +6,6 @@ from odoo import models, Command
 class EstateProperty(models.Model):
     # ---Private ---
     _inherit = "estate.property"
-
     def action_sold(self):
         _logger.info("Hello from inherited action sold")
         journal = self.env["account.journal"].search([("type", "=", "sale")], limit=1)
